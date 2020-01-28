@@ -1,19 +1,19 @@
 #include <iostream>
 using namespace std;
 
-class SLLNode
+class Node
 {
 	public:
-		SLLNode *next;
+		Node *next;
 		int data;
-		SLLNode();
-		SLLNode(int _data);
+		Node();
+		Node(int _data);
 };
-SLLNode::SLLNode()
+Node::Node()
 {
 	next = NULL;
 }
-SLLNode::SLLNode(int _data)
+Node::Node(int _data)
 {
 	this->data = _data;
 	next = NULL;
@@ -21,8 +21,8 @@ SLLNode::SLLNode(int _data)
 class SLList
 {
 	private:
-		SLLNode *head;
-		SLLNode *tail;
+		Node *head;
+		Node *tail;
 		int size;
 	public:
 		SLList();
@@ -30,6 +30,7 @@ class SLList
 		void AppendToList(int _data);
 		void ShowList();
 		void PrependToList(int _data);
+		void RemoveFirstNode();
 		~SLList();
 };
 SLList::SLList()
@@ -45,7 +46,7 @@ int SLList::getSize()
 
 void SLList::AppendToList(int _data)
 {
-	SLLNode *node = new SLLNode(_data);
+	Node *node = new Node(_data);
 	if(head == NULL)
 	{
 		head = node;
@@ -61,17 +62,17 @@ void SLList::AppendToList(int _data)
 }
 void SLList::ShowList()
 {
-	SLLNode *temp  = head;
+	Node *temp  = head;
 	while(temp!=NULL)
 	{
-		cout<<temp->data;
+		cout<<temp->data<<"-->";
 		temp = temp->next;
-		cout<<"\n";
 	}
+	cout<<"\n";
 }
 void SLList::PrependToList(int _data)
 {
-	SLLNode *node = new SLLNode(_data);
+	Node *node = new Node(_data);
 	if(head == NULL)
 	{
 		head = node;
@@ -79,16 +80,26 @@ void SLList::PrependToList(int _data)
 	}
 	else
 	{
-		SLLNode *temp = head;
+		Node *temp = head;
 		head = node;
 		node->next = temp;
 
 	}
 	size++;
 }
+void SLList::RemoveFirstNode()
+{
+	if(head!=NULL)
+	{
+		Node *temp = head;
+		head = head->next;
+		delete temp;
+		size--;
+	}
+}
 SLList::~SLList()
 {
-	SLLNode *node;
+	Node *node;
 	while(head != NULL)
 	{
 		node = head->next;
