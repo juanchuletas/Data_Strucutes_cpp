@@ -6,11 +6,15 @@ int main()
 
 	s.AppendToList(10);
 	s.AppendToList(11);
+	s.AppendToList(12);
+	s.AppendToList(13);
 	s.PrependToList(21);
-	s.getSize();
 	s.ShowList();
 	cout<<"List Size: "<<s.getSize()<<"\n";
+	s.RemoveFirstNode();
+	s.ShowList();
 	cout<<"List Size: "<<s.getSize()<<"\n";
+	s.ShowList();
 
 
 
