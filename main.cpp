@@ -11,7 +11,7 @@ int main()
 	s.PrependToList(21);
 	s.ShowList();
 	cout<<"List Size: "<<s.getSize()<<"\n";
-	s.RemoveFirstNode();
+	s.RemoveFirstSLLNode();
 	s.ShowList();
 	cout<<"List Size: "<<s.getSize()<<"\n";
 	s.ShowList();
