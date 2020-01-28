@@ -30,6 +30,7 @@ class SLList
 		void AppendToList(int _data);
 		void ShowList();
 		void PrependToList(int _data);
+		~SLList();
 };
 SLList::SLList()
 {
@@ -55,6 +56,7 @@ void SLList::AppendToList(int _data)
 		tail->next = node;
 		tail = node;
 	}
+	size++;
 	
 }
 void SLList::ShowList()
@@ -82,5 +84,18 @@ void SLList::PrependToList(int _data)
 		node->next = temp;
 
 	}
+	size++;
+}
+SLList::~SLList()
+{
+	SLLNode *node;
+	while(head != NULL)
+	{
+		node = head->next;
+		delete head; 
+		head = node;
+	}
+	size = 0;
+	cout<<"SLList Destructor called\n";
 }
 
