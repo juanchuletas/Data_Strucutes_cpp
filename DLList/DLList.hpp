@@ -30,6 +30,7 @@ class DLList
 		void AppendToDLList(int _data);
 		void ShowDLList();
 		void ReverseDLList();
+		void AddAtPossition(int _pos);
 };
 DLList::DLList()
 {
@@ -81,4 +82,38 @@ void DLList::ShowDLList()
 }
 void DLList::ReverseDLList()
 {
+	DLLNode *tmp  = tail;
+	while(tmp!=NULL)
+	{
+		std::cout<<tmp->data<<" <--> ";
+		tmp = tmp->prev;
+	}
+	std::cout<<"\n";
+}
+void DLList::addTo(int pos, int _data)
+{
+	if(pos < 1 || pos > size + 1 )
+	{
+		std::cout<<"Invalid Position\n";
+		return;
+	}
+	else if(pos == 1)
+	{
+		PrependToDLList(_data);
 
+	}
+	else if(pos == size + 1)
+	{
+		AppendToDLList(_data);
+	}
+	else if(head!=NULL)
+	{
+		DLLNode *node = new DLLNode(_data);
+		DLLNode *current = head;
+		for(int i = 1; i<pos)
+			current = current -> next;
+		current->prev->next = node;
+		node->prev = current;
+	}
+
+}
